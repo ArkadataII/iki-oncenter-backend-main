@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  ss-contenteditor-backend:
+    build: ss-contenteditor-backend
+    environment:
+      PROJECT_NAME: ${PROJECT_NAME}
+      SQL_DATABASE_URL: 's'
+      SECRET_KEY: ${SECRET_KEY}
+      TZ: 'Asia/Ho_Chi_Minh'
+    ports:
+      - "2004:5000"
+    restart: unless-stopped

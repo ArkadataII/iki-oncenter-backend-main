@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:13.1
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    environment:
+      - POSTGRES_DB=
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+      - TZ=Asia/Ho_Chi_Minh
+    volumes:
+      - ./docker/db:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+
+    ports:
+      - 2005:5432
